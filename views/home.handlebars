@@ -1,0 +1,106 @@
+<header>
+    <h2 class="logo">Blog</h2>
+    <nav class="navigation">
+        <a href="#">Home</a>
+        <a href="/about" target="_blank">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <button class="btnLogin-popup">Login</button>
+        <span id="dark_mode" class="material-symbols-outlined">
+            dark_mode
+        </span>
+        <div class="sanduba"> <!-- Só aparece quando for em telas menores -->
+            <span id="mobile_menu" class="material-symbols-outlined">
+                menu
+            </span> 
+            <span id="close_mobile_menu" class="material-symbols-outlined">
+                close
+            </span>
+            <nav class="nav_mobile">
+                <button class="btnLogin-popup-mobile">Login</button>
+                <a href="#">Home</a>
+                <a href="/about">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {{!-- <h1>Bem vindo ao meu projeto de Blog pessoal com Node.js</h1> --}}
+
+    <section>
+        <div class="form-box">
+            <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+            <div class="form-value">
+                <form action="#">
+                    <div class="text">
+                        <h2 class="Login">Login</h2>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" required>
+                        <label for="">Password</label>
+                    </div>
+                    <div class="forget">
+                        <label for=""><input type="checkbox">Remember Me
+                        <a href="#">Forget Password</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="register">
+                        <p>Don't have a account? <a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-value-register">
+                <form action="#">
+                    <div class="text">
+                        <h2 class="Login">Register</h2>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" required>
+                        <label for="">Username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" required>
+                        <label for="">Password</label>
+                    </div>
+                    <div class="forget">
+                        <label for=""><input type="checkbox">I agree to the terms & conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login">
+                        <p>Already have a account? <a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
+
+        </div> 
+    </section>
+</main>
+<script src="/js/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+
+
+
+
+

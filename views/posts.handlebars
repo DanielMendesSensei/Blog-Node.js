@@ -1,0 +1,13 @@
+<h1>Lista de Postagens</h1>
+
+{{!-- para cada postagem faça algo --}}
+{{#each posts}}
+    <h1>{{title}}</h1>
+    <p>{{content}}</p>
+    <small>{{createdAt}}</small>
+    <form action="/deletar/{{id}}" method="GET">
+        <button type="submit">Deletar</button>
+    </form>
+    
+    <hr>
+{{/each}}
