@@ -34,13 +34,13 @@
         <div class="form-box">
             <span class="icon-close"><ion-icon name="close"></ion-icon></span>
             <div class="form-value">
-                <form action="#">
+                <form action="/login" method="POST">
                     <div class="text">
                         <h2 class="Login">Login</h2>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <input type="email" name="login_e_mail" required>
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
@@ -61,23 +61,24 @@
             </div>
 
             <div class="form-value-register">
-                <form action="#">
+                {{!-- <div id="mensagem-container"></div> --}}
+                <form action="/register" method="POST">
                     <div class="text">
                         <h2 class="Login">Register</h2>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" required>
+                        <input type="text" name="register_user_name" required>
                         <label for="">Username</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <input type="email" name="register_e_mail" required>
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" name="register_password_hash" required>
                         <label for="">Password</label>
                     </div>
                     <div class="forget">

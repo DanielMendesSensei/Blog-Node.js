@@ -4,7 +4,9 @@ const app = express();
 const door = 8003;
 const handlebars = require("express-handlebars");
 const Post = require("./models/Post");
+const User = require("./models/User");
 const { where } = require("sequelize");
+const session = require("express-session");
 
 
 //CONFIG
@@ -21,10 +23,19 @@ const { where } = require("sequelize");
         app.set('view engine', 'handlebars')
 
     //BODY PARSER
-    //Aqui é um middleware
-        app.use(express.urlencoded({extended: false}))
-        app.use(express.json())
+        app.use(express.urlencoded({extended: false}));
+        app.use(express.json());
 
+    //SECTIONS
+        app.use(session({
+            secret: "chaveteste",
+            resave: false,
+            saveUninitialized: true,
+            cookie: { secure: false } // Defina como true se estiver usando HTTPS
+        }));
+
+    //MIDDLEWARES
+        
 //ROTAS GET
     app.get("/", function(req, res){
         // o findAll retorna um array, logo para mostrar precisa iterar nele
@@ -54,7 +65,41 @@ const { where } = require("sequelize");
         res.render('about');
     })
 
+    app.get("/profile", function(req, res){
+        if(req.session.login){
+            res.send(`Bem-vindo, ${req.session.login}!`);
+        }
+        else{
+            console.log("ERRO GRAVE")
+        }
+    })
+
 //ROTAS POST
+    app.post("/register", function(req, res){
+        // Verificar se usuário já existe no banco e se email já foi registrado também
+        // User.findAll({
+        //     where: {
+        //         'user_name:': req.body.register_user_name}
+        //     })
+        //     .then(() =>{
+        //         console.log("Username já existente")
+        //     })   
+        User.create({
+            user_name: req.body.register_user_name,
+            e_mail: req.body.register_e_mail,
+            password_hash: req.body.register_password_hash
+        })
+        .then(() => {
+            // TEM QUE MEXER AQUI
+            // const user_login = req.body.register_user_name
+            // req.session.login = user_login;
+            res.send("Registro feito com sucesso!")
+        })
+        .catch((err) => {
+            res.send('Erro ao se cadastrar', err);
+          })
+    });
+
     // Rota que pega dados da postagem, salva no db e retorna para home
     app.post("/sendpost", function(req, res){
         Post.create({
@@ -68,19 +113,14 @@ const { where } = require("sequelize");
         .catch((err) => {
             res.send('Erro ao enviar o Post', err);
           });
-
-        // let title = req.body.title;
-        // let content = req.body.content;
-        // res.send(`Formulario Enviado, dados ${title} e ${content}`)
     });
 
-   /*  app.get("/sobre", function(req, res){
-        res.send("Seja bem-vindo ao meu app!");
-    });
-
-    app.get("/blog", function(req, res){
-        res.send("Seja bem-vindo ao meu app!");
+    // Retornando mensagem ao cliente com json
+    /* app.post("/message", function(req, res){
+        const mensagem = ;
+        res.json({ mensagem: mensagem});
     }); */
+
 
 // ARQUIVOS ESTÁTICOS (CSS)
 app.use(express.static('public'));
